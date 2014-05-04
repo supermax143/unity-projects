@@ -25,8 +25,8 @@ public class PlayerController : MonoBehaviour {
 	{
 		grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("ground"));  
 	
-		Debug.Log(grounded);
-
+		//Debug.Log(grounded);
+		GameManager.Instanse.showLog();
 		float move = Input.GetAxis("Horizontal");
 		aninator.SetFloat("speed", Mathf.Abs(move));
 		rigidbody2D.velocity = new Vector2(move * maxSpeed, rigidbody2D.velocity.y);
