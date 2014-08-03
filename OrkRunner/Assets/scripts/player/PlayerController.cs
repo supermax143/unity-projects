@@ -19,25 +19,26 @@ public class PlayerController : MonoBehaviour {
 		//aninator.SetTrigger("stand");
 		groundCheck = transform.Find("groundCheck");
 	}
-	
+
 	// Update is called once per frame
 	private void FixedUpdate()
 	{
 		grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("ground"));  
 	
-		//Debug.Log(grounded);
-		GameManager.Instanse.showLog();
-		float move = Input.GetAxis("Horizontal");
-		animator.SetFloat("speed", Mathf.Abs(move));
+
+		//float move = Input.GetAxis("Horizontal");
 		animator.SetBool("grounded", grounded);
-		rigidbody2D.velocity = new Vector2(move * maxSpeed, rigidbody2D.velocity.y);
+		//rigidbody2D.velocity = new Vector2(move * maxSpeed, rigidbody2D.velocity.y);
+		rigidbody2D.velocity = new Vector2(maxSpeed, rigidbody2D.velocity.y);
+		animator.SetFloat("speed", Mathf.Abs(maxSpeed));
 		if(grounded && Input.GetButton("Jump"))
 			ApplyJump();
+
 	}
 
 	private void ApplyJump(){
 
-		animator.SetTrigger("Jump");
+		animator.SetTrigger("jump");
 		rigidbody2D.AddForce(new Vector2(0,jumpForce));
 	}
 

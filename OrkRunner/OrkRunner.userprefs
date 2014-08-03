@@ -1,10 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\CameraController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\player\FireController.cs">
     <Files>
-      <File FileName="..\TowerBridge\Assets\Scripts\Score.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\PlayerController.cs" Line="32" Column="1" />
-      <File FileName="Assets\scripts\CameraController.cs" Line="15" Column="3" />
+      <File FileName="Assets\scripts\player\FireController.cs" Line="120" Column="1" />
+      <File FileName="Assets\scripts\player\PlayerController.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\Managers\TimerManager.cs" Line="19" Column="14" />
+      <File FileName="Assets\scripts\DestroyerScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\GameManager.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
