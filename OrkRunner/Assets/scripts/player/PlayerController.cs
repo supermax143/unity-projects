@@ -6,7 +6,6 @@ public class PlayerController : MonoBehaviour {
 
 
 	private Animator animator;
-	private float speed;
 	private bool grounded;
 	private Transform groundCheck;
 
@@ -24,7 +23,7 @@ public class PlayerController : MonoBehaviour {
 	private void FixedUpdate()
 	{
 		grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("ground"));  
-	
+	    
 
 		//float move = Input.GetAxis("Horizontal");
 		animator.SetBool("grounded", grounded);

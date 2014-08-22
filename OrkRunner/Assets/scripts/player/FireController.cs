@@ -27,20 +27,18 @@ public class FireController : MonoBehaviour
 
 	private int state = IDLE;
 
-		
 
 	void Start ()
 	{
 		animator =transform.root.gameObject.GetComponent<Animator>();
 		Transform leftArm = transform.FindChild("ork_left_arm");
 		weaponPlace = leftArm.FindChild("ork_weapon");
+        GameObject aaa = GameObject.Find("asd"); 
 	}
-
 
 	void Update ()
 	{
 		//if(Input.GetButtonDown("Fire1"))
-		//	StartThrow();
 
 		CheckButtons();
 		switch(state)
@@ -102,7 +100,7 @@ public class FireController : MonoBehaviour
 		float koef = BoostTime()/throwBoostTime;
 		if(koef>1)
 			koef = 1;
-		float xVel = minThrowVelocityX + (throwVelocityAddX*koef);
+	    float xVel = minThrowVelocityX + (throwVelocityAddX*koef);
 		float yVel = minThrowVelocityY + (throwVelocityAddY*koef);
 		Rigidbody2D axeIstance = Instantiate(axe, weaponPlace.position, Quaternion.Euler(new Vector3(0,0,0))) as Rigidbody2D;
 		axeIstance.velocity = new Vector2(xVel, yVel);

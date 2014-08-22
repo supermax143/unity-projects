@@ -5,12 +5,11 @@ public class TimerManager : MonoBehaviour {
 
 
 
-
 	private static TimerManager instance;
 
 	private float currentTime = 0f;
 
-	void Start () {
+	void Start () { 
 		instance = this;
 	}
 
