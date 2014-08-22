@@ -1,0 +1,54 @@
+
+skeleton.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+arm_left
+  rotate: true
+  xy: 75, 2
+  size: 48, 65
+  orig: 48, 65
+  offset: 0, 0
+  index: -1
+arm_right
+  rotate: false
+  xy: 75, 52
+  size: 67, 66
+  orig: 67, 66
+  offset: 0, 0
+  index: -1
+axe
+  rotate: false
+  xy: 144, 12
+  size: 59, 46
+  orig: 59, 46
+  offset: 0, 0
+  index: -1
+body
+  rotate: true
+  xy: 144, 60
+  size: 58, 75
+  orig: 58, 75
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 2, 36
+  size: 71, 82
+  orig: 71, 82
+  offset: 0, 0
+  index: -1
+leg_left
+  rotate: false
+  xy: 221, 94
+  size: 22, 24
+  orig: 22, 24
+  offset: 0, 0
+  index: -1
+leg_right
+  rotate: false
+  xy: 2, 10
+  size: 22, 24
+  orig: 22, 24
+  offset: 0, 0
+  index: -1
