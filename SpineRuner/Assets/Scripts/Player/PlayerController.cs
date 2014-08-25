@@ -5,24 +5,27 @@ public class PlayerController : MonoBehaviour {
 
 
 
-	//private Animator animator;
 	private float speed;
     private bool grounded;
 	private Transform groundCheck;
 	public float maxSpeed = 10f;
 	public float jumpForce = 700;
-    SkeletonAnimation animation;
+    SkeletonAnimation skeletonAnimation;
+
+    ColiderScript[] colliders;
+
 	void Start () {
-		//animator = GetComponent<Animator>();
-		groundCheck = transform.Find("groundCheck");
-        animation = GetComponent<SkeletonAnimation>();
+        groundCheck = transform.Find("bottom_collider");
+        skeletonAnimation = GetComponent<SkeletonAnimation>();
+        colliders = GetComponentsInChildren<ColiderScript>();
+        foreach (ColiderScript c in colliders)
+            c.collisionEvent += OnCollisionEvent; 
 	}
 
 
 	private void FixedUpdate()
 	{
 		Grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("ground"));  
-		
 		rigidbody2D.velocity = new Vector2(maxSpeed, rigidbody2D.velocity.y);
 		//animator.SetFloat("speed", Mathf.Abs(maxSpeed));
 		if(grounded && Input.GetButton("Jump"))
@@ -30,9 +33,25 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
+
+    private void OnCollisionEvent(string sender, Collider2D collider)
+    {
+        Debug.Log(collider.gameObject.tag);
+        if(collider.gameObject.tag == "Enemy")
+        {
+            ColiderScript coliderScript = collider.gameObject.GetComponent<ColiderScript>();
+            if (coliderScript.colliderName == "head")
+                ApplyJump();
+        }
+
+
+    }
+
+  
+
+
 	private void ApplyJump(){
 
-		//animator.SetTrigger("jump");
 		rigidbody2D.AddForce(new Vector2(0,jumpForce));
 	}
     public bool Grounded
@@ -46,12 +65,12 @@ public class PlayerController : MonoBehaviour {
             if(grounded)
             {
                 
-                animation.state.SetAnimation(0, "run", true);
+                skeletonAnimation.state.SetAnimation(0, "run", true);
             }
             else
             {
-                animation.state.ClearTrack(0);
-                animation.state.SetAnimation(1, "jump", false);
+                skeletonAnimation.state.ClearTrack(0);
+                skeletonAnimation.state.SetAnimation(1, "jump", false);
             }
         }
     }

@@ -6,21 +6,15 @@ public class CameraController : MonoBehaviour {
 
 
     private Transform playerTransform;
-    private Camera camera;
+    private Camera cameraComponent;
     void Start()
     {
         playerTransform = GameObject.Find("ork").transform;
-        camera = GetComponent<Camera>();
+        cameraComponent = GetComponent<Camera>();
     }
 
     private void FixedUpdate()
     {
-
-       // playerDeltaX = playerPosition.position.x - playerStartPosition.x;
-       // playerDeltaY = playerPosition.position.y - playerStartPosition.y;
-       // curPositionX = followX ? playerDeltaX + startX : transform.position.x;
-       // curPositionY = followY ? playerDeltaY + startY : transform.position.y;
-       // transform.position = new Vector3(curPositionX, curPositionY, transform.position.z);
 
         transform.position = new Vector3(playerTransform.position.x, playerTransform.position.y,transform.position.z);
         HandleArrows();
@@ -32,13 +26,13 @@ public class CameraController : MonoBehaviour {
 
         if (Input.GetKey("up"))
         {
-            camera.orthographicSize++;
-            Debug.Log(camera.orthographicSize);
+            cameraComponent.orthographicSize++;
+            Debug.Log(cameraComponent.orthographicSize);
         }
         else if (Input.GetKey("down"))
         {
-            camera.orthographicSize--;
-            Debug.Log(camera.orthographicSize);
+            cameraComponent.orthographicSize--;
+            Debug.Log(cameraComponent.orthographicSize);
         }
 
     }

@@ -21,18 +21,16 @@ public class FireController : MonoBehaviour
 	public Rigidbody2D axe;
 	
 	private bool fireButtonDown = false;
-	//private Animator animator;
-	private bool throwing = false;
 	private Spine.Bone weaponPlace;
 
 	private int state = IDLE;
-    SkeletonAnimation animation;
+    SkeletonAnimation skeletonAnimation;
 		
 	void Start ()
 	{
 		
-        animation = GetComponent<SkeletonAnimation>();
-        weaponPlace = animation.skeleton.FindBone("axe");
+        skeletonAnimation = GetComponent<SkeletonAnimation>();
+        weaponPlace = skeletonAnimation.skeleton.FindBone("axe");
        
 	}
 
@@ -80,9 +78,8 @@ public class FireController : MonoBehaviour
 	{
 		state = START_THROW;
 		//animator.SetTrigger("start_throw");
-        animation.state.SetAnimation(2, "throw_start",false);
-        animation.state.End += SartThrowCompleteHandler;
-		throwing = true;
+        skeletonAnimation.state.SetAnimation(2, "throw_start",false);
+        skeletonAnimation.state.End += SartThrowCompleteHandler;
 	}
 
     private void SartThrowCompleteHandler(Spine.AnimationState state, int trackIndex)
@@ -90,8 +87,8 @@ public class FireController : MonoBehaviour
         if (trackIndex != 2)
             return;
         Debug.Log(trackIndex);
-        animation.state.End -= SartThrowCompleteHandler;
-        animation.state.SetAnimation(3, "throw_boost", true);
+        skeletonAnimation.state.End -= SartThrowCompleteHandler;
+        skeletonAnimation.state.SetAnimation(3, "throw_boost", true);
 		this.state = BOOST_THROW;
 		boostStarTime = TimerManager.Instance.CurrentTime;
     }
@@ -104,10 +101,10 @@ public class FireController : MonoBehaviour
 
 	public void ThrowWeapon()
 	{
-        animation.state.ClearTrack(3);
-        animation.state.SetAnimation(4, "throw", false);
-        animation.state.End += ThrowAnimationCompleteHandler;
-        animation.state.Event += OnWeaponThrown;
+        skeletonAnimation.state.ClearTrack(3);
+        skeletonAnimation.state.SetAnimation(4, "throw", false);
+        skeletonAnimation.state.End += ThrowAnimationCompleteHandler;
+        skeletonAnimation.state.Event += OnWeaponThrown;
         state = THROW;
     }
 
@@ -115,14 +112,14 @@ public class FireController : MonoBehaviour
     {
         if (e.String != "throw")
             return;
-        animation.state.Event -= OnWeaponThrown;
+        skeletonAnimation.state.Event -= OnWeaponThrown;
 
         float koef = BoostTime() / throwBoostTime;
         if (koef > 1)
             koef = 1;
         float xVel = minThrowVelocityX + (throwVelocityAddX * koef);
         float yVel = minThrowVelocityY + (throwVelocityAddY * koef);
-        Vector3 axePosition = new Vector3(animation.transform.position.x + weaponPlace.worldX, animation.transform.position.y + weaponPlace.worldY);
+        Vector3 axePosition = new Vector3(skeletonAnimation.transform.position.x + weaponPlace.worldX, skeletonAnimation.transform.position.y + weaponPlace.worldY);
 
         Rigidbody2D axeIstance = Instantiate(axe, axePosition, Quaternion.Euler(new Vector3(0, 0, 0))) as Rigidbody2D;
         axeIstance.velocity = new Vector2(xVel, yVel);
@@ -133,7 +130,7 @@ public class FireController : MonoBehaviour
     {
         if (trackIndex != 4)
             return;
-        animation.state.End -= ThrowAnimationCompleteHandler;
+        skeletonAnimation.state.End -= ThrowAnimationCompleteHandler;
 		this.state = IDLE;
     }
 
