@@ -7,6 +7,7 @@ public class HumanEnemyScript : MonoBehaviour {
     SkeletonAnimation skeletonAnimation;
     ColiderScript[] colliders;
     Spine.Bone weaponPlace;
+    Transform playerTransfor;
     enum State : int { Idle, Atack, DeathStart, Death};
     
     private State state = State.Idle;
@@ -17,7 +18,9 @@ public class HumanEnemyScript : MonoBehaviour {
         colliders = GetComponentsInChildren<ColiderScript>();
         foreach (ColiderScript c in colliders)
             c.collisionEvent += OnCollisionEvent;
+       
         weaponPlace = skeletonAnimation.skeleton.FindBone("weapon");
+        playerTransfor = GameObject.FindGameObjectWithTag("Player").transform;
 	}
 
 
@@ -27,7 +30,9 @@ public class HumanEnemyScript : MonoBehaviour {
             transform.Translate(new Vector3(0.1f,-0.5f));
         if(state==State.DeathStart)
             transform.Translate(new Vector3(0, 0.12f));
-        CheckPlayerClose();
+        if (state == State.Idle)
+            CheckPlayerClose();
+        
     }
 
     private void CheckPlayerClose()
@@ -35,11 +40,9 @@ public class HumanEnemyScript : MonoBehaviour {
         if (state == State.Atack)
             return;
         Vector3 weaponPosition = new Vector3(skeletonAnimation.transform.position.x + transform.localScale.x * weaponPlace.worldX, skeletonAnimation.transform.position.y + weaponPlace.worldY);
-        Vector3 collisionPoint = new Vector3(weaponPosition.x + transform.localScale.x * 8, weaponPosition.y);
-        Debug.DrawLine(collisionPoint, weaponPosition, Color.red);
-        bool touch = Physics2D.Linecast(collisionPoint, weaponPosition,1 << LayerMask.NameToLayer("Player"));
-        Debug.DrawLine(collisionPoint, weaponPosition, Color.red);
-        if (touch)
+      
+        float minDistance = 8f;
+        if (Vector3.Distance(weaponPosition, playerTransfor.position) < minDistance)
         {
             state = State.Atack;
             skeletonAnimation.state.SetAnimation(2, "atack", false);
@@ -66,6 +69,8 @@ public class HumanEnemyScript : MonoBehaviour {
 
     private void Death()
     {
+        foreach (ColiderScript cs in colliders)
+            cs.gameObject.SetActive(false);
 
         skeletonAnimation.state.ClearTracks();
         skeletonAnimation.state.SetAnimation(0,"death",false);

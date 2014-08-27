@@ -27,7 +27,6 @@ public class PlayerController : MonoBehaviour {
 	{
 		Grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("ground"));  
 		rigidbody2D.velocity = new Vector2(maxSpeed, rigidbody2D.velocity.y);
-		//animator.SetFloat("speed", Mathf.Abs(maxSpeed));
 		if(grounded && Input.GetButton("Jump"))
 			ApplyJump();
 
@@ -36,12 +35,15 @@ public class PlayerController : MonoBehaviour {
 
     private void OnCollisionEvent(string sender, Collider2D collider)
     {
-        Debug.Log(collider.gameObject.tag);
+        
         if(collider.gameObject.tag == "Enemy")
         {
             ColiderScript coliderScript = collider.gameObject.GetComponent<ColiderScript>();
             if (coliderScript.colliderName == "head")
+            {
                 ApplyJump();
+                Debug.Log("kill bustard");
+            }
         }
 
 
