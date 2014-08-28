@@ -17,7 +17,6 @@ public class HumanEnemyScript : MonoBehaviour {
         colliders = GetComponentsInChildren<ColiderScript>();
         foreach (ColiderScript c in colliders)
             c.collisionEvent += OnCollisionEvent;
-       
         weaponPlace = skeletonAnimation.skeleton.FindBone("weapon");
         playerTransfor = GameObject.FindGameObjectWithTag("Player").transform;
 	}
