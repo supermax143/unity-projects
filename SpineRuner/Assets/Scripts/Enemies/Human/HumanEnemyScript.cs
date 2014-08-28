@@ -8,8 +8,7 @@ public class HumanEnemyScript : MonoBehaviour {
     ColiderScript[] colliders;
     Spine.Bone weaponPlace;
     Transform playerTransfor;
-    enum State : int { Idle, Atack, DeathStart, Death};
-    
+    enum State  { Idle, Atack, DeathStart, Death};
     private State state = State.Idle;
 
 	void Start () {
