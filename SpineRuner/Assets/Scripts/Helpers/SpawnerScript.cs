@@ -16,7 +16,7 @@ public class SpawnerScript : MonoBehaviour {
 		if(collider.gameObject.tag != "Spawn")
 			return;
 		GameObject ground = grounds[Random.Range(0,grounds.GetLength(0))];
-
+        Destroy(collider.gameObject);
 		Instantiate(ground,spawnPlace.transform.position, new Quaternion());
 	}
 }

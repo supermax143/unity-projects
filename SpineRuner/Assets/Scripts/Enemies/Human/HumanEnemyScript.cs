@@ -16,7 +16,7 @@ public class HumanEnemyScript : MonoBehaviour {
         skeletonAnimation.state.SetAnimation(1,"stand",true);
         colliders = GetComponentsInChildren<ColiderScript>();
         foreach (ColiderScript c in colliders)
-            c.collisionEvent += OnCollisionEvent;
+            c.collisionEnterEvent += OnCollisionEvent;
         weaponPlace = skeletonAnimation.skeleton.FindBone("weapon");
         playerTransfor = GameObject.FindGameObjectWithTag("Player").transform;
 	}
@@ -47,9 +47,6 @@ public class HumanEnemyScript : MonoBehaviour {
         }
     }
 
-
-
-
     private void OnCollisionEvent(string sender, Collider2D collider)
     {
         if (collider.gameObject.tag == "Weapon")
@@ -60,15 +57,11 @@ public class HumanEnemyScript : MonoBehaviour {
             if (coliderScript && coliderScript.colliderName == "bottom" && sender == "head")
                 Death();
         }
-
-        if (collider.gameObject.tag == "Destroyer")
-            Destroy(gameObject);
+        
     }
 
     private void Death()
     {
-        foreach (ColiderScript cs in colliders)
-            cs.gameObject.SetActive(false);
 
         skeletonAnimation.state.ClearTracks();
         skeletonAnimation.state.SetAnimation(0,"death",false);

@@ -20,7 +20,6 @@ public class FireController : MonoBehaviour
 	//weapon
 	public Rigidbody2D axe;
 	
-	private bool fireButtonDown = false;
 	private Spine.Bone weaponPlace;
 
 	private int state = IDLE;
@@ -39,7 +38,6 @@ public class FireController : MonoBehaviour
 	void Update ()
 	{
         
-		CheckButtons();
 		switch(state)
 		{
 			case IDLE:
@@ -59,25 +57,16 @@ public class FireController : MonoBehaviour
 
 	}
 
-	void CheckButtons()
-	{
-		if(Input.GetMouseButtonDown(0))
-			fireButtonDown = true;
-		else if(Input.GetMouseButtonUp(0))
-			fireButtonDown = false;
-	}
-
+	
 	void OnStateIdle()
 	{
-		//Debug.Log("state idle");
-		if(fireButtonDown)
+		if(InputManager.Instance.IsFirePressed)
 			StartThrow(); 
 	}
 
 	private void StartThrow()
 	{
 		state = START_THROW;
-		//animator.SetTrigger("start_throw");
         skeletonAnimation.state.SetAnimation(2, "throw_start",false);
         skeletonAnimation.state.End += SartThrowCompleteHandler;
 	}
@@ -86,7 +75,6 @@ public class FireController : MonoBehaviour
     {
         if (trackIndex != 2)
             return;
-        Debug.Log(trackIndex);
         skeletonAnimation.state.End -= SartThrowCompleteHandler;
         skeletonAnimation.state.SetAnimation(3, "throw_boost", true);
 		this.state = BOOST_THROW;
@@ -94,8 +82,7 @@ public class FireController : MonoBehaviour
     }
 	void OnStateBoostThrow()
 	{
-		//Debug.Log("state boost throw");
-		if(!fireButtonDown)
+        if (!InputManager.Instance.IsFirePressed)
 			ThrowWeapon();
 	}
 
