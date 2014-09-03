@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour {
         colliders = GetComponentsInChildren<ColiderScript>();
         foreach (ColiderScript c in colliders)
         {
-            c.collisionEnterEvent += OnCollisionEnterEvent;
+            c.triggerEnterEvent += OnCollisionEnterEvent;
         }
 	}
 
