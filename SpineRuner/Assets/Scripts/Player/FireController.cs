@@ -18,7 +18,7 @@ public class FireController : MonoBehaviour
 	public float throwVelocityAddX = 20;
 	public float throwVelocityAddY = 10;
 	//weapon
-	public Rigidbody2D axe;
+	public GameObject axe;
 	
 	private Spine.Bone weaponPlace;
 
@@ -109,6 +109,7 @@ public class FireController : MonoBehaviour
         Vector3 axePosition = new Vector3(skeletonAnimation.transform.position.x + weaponPlace.worldX, skeletonAnimation.transform.position.y + weaponPlace.worldY);
 
         Rigidbody2D axeIstance = Instantiate(axe, axePosition, Quaternion.Euler(new Vector3(0, 0, 0))) as Rigidbody2D;
+      
         axeIstance.velocity = new Vector2(xVel, yVel);
         axeIstance.AddTorque(-250);
     }

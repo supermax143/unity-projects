@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour {
 
 	private void Update()
 	{
-        grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("ground"));
+        grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer(LayerEnum.Ground));
         if(Waiting)
             return;
         switch (state)
@@ -73,7 +73,8 @@ public class PlayerController : MonoBehaviour {
     {
         if (Waiting)
             return;
-        if(collider.gameObject.tag == "Enemy")
+        
+        if(collider.gameObject.tag == TagEnum.Enemy)
         {
             Debug.Log(sender);
             ColiderScript coliderScript = collider.gameObject.GetComponent<ColiderScript>();

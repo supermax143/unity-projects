@@ -49,9 +49,9 @@ public class HumanEnemyScript : MonoBehaviour {
 
     private void OnCollisionEvent(string sender, Collider2D collider)
     {
-        if (collider.gameObject.tag == "Weapon")
+        if (collider.gameObject.tag == TagEnum.Weapon)
             Death();
-        if (collider.gameObject.tag == "Player")
+        if (collider.gameObject.tag == TagEnum.Player)
         {
             ColiderScript coliderScript = collider.gameObject.GetComponent<ColiderScript>();
             if (coliderScript && coliderScript.colliderName == "bottom" && sender == "head")
@@ -67,6 +67,11 @@ public class HumanEnemyScript : MonoBehaviour {
         skeletonAnimation.state.SetAnimation(0,"death",false);
         state = State.DeathStart;
         skeletonAnimation.state.End += OnDeathAnimationComplete;
+        gameObject.layer = LayerMask.NameToLayer(LayerEnum.Void);
+        foreach (Transform child in transform)
+        {
+            child.gameObject.layer = LayerMask.NameToLayer(LayerEnum.Void);
+        } 
     }
 
     void OnDeathAnimationComplete(Spine.AnimationState s, int trackIndex)

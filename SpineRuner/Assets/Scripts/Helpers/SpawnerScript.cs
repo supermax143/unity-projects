@@ -13,7 +13,7 @@ public class SpawnerScript : MonoBehaviour {
 	
 	void OnTriggerEnter2D(Collider2D collider)
 	{
-		if(collider.gameObject.tag != "Spawn")
+		if(collider.gameObject.tag != TagEnum.Spawn)
 			return;
 		GameObject ground = grounds[Random.Range(0,grounds.GetLength(0))];
         Destroy(collider.gameObject);
