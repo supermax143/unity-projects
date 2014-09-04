@@ -14,8 +14,14 @@ public class PCInputManager : InputManager
         isJumpPressed = Input.GetButton("Jump");
         
         if(Input.GetMouseButtonDown(0))
+        {
             isFirePressed = true;
+
+        }
 		else if(Input.GetMouseButtonUp(0))
             isFirePressed = false;
+
+        if (Input.mousePosition!=null)
+            fireAngle = MAX_ANGLE-(MAX_ANGLE - MIN_ANGLE) * (Input.mousePosition.y / Screen.height);
 	}
 }

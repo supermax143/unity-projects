@@ -13,10 +13,9 @@ public class FireController : MonoBehaviour
 	public float throwBoostTime = 1.5f;
 	private float boostStarTime;
 	//throw 
-	public float minThrowVelocityX = 22;
-	public float minThrowVelocityY = 13;
-	public float throwVelocityAddX = 20;
-	public float throwVelocityAddY = 10;
+	public float minThrowVelocity = 22;
+	public float throwVelocityAdd = 20;
+
 	//weapon
 	public GameObject axe;
 	
@@ -104,13 +103,18 @@ public class FireController : MonoBehaviour
         float koef = BoostTime() / throwBoostTime;
         if (koef > 1)
             koef = 1;
-        float xVel = minThrowVelocityX + (throwVelocityAddX * koef);
-        float yVel = minThrowVelocityY + (throwVelocityAddY * koef);
+        float xVel = minThrowVelocity + (throwVelocityAdd * koef);
+        
         Vector3 axePosition = new Vector3(skeletonAnimation.transform.position.x + weaponPlace.worldX, skeletonAnimation.transform.position.y + weaponPlace.worldY);
 
         Rigidbody2D axeIstance = Instantiate(axe, axePosition, Quaternion.Euler(new Vector3(0, 0, 0))) as Rigidbody2D;
-      
-        axeIstance.velocity = new Vector2(xVel, yVel);
+
+
+        float ang = InputManager.Instance.FireAngle * Mathf.Deg2Rad;
+
+        axeIstance.velocity = new Vector2(Mathf.Sin(ang) * xVel, Mathf.Cos(ang) * xVel);
+        
+
         axeIstance.AddTorque(-250);
     }
 

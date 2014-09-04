@@ -29,6 +29,7 @@ public class ColiderScript : MonoBehaviour {
     {
         if (collisionEnterEvent != null)
             collisionEnterEvent(colliderName, collision);
+     
     }
 
     void OnCollisionExit2D(Collision2D collision)
