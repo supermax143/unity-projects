@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using Spine;
 public class HumanEnemyScript : MonoBehaviour {
 
 
@@ -86,5 +86,8 @@ public class HumanEnemyScript : MonoBehaviour {
         rigidbody2D.fixedAngle = false;
         rigidbody2D.AddForce(new Vector2(0, 1000));
         rigidbody2D.AddTorque(Random.Range(-500,500));
+        GetComponent<BonesBrakerScript>().BreakeBones();
     }
+
+   
 }

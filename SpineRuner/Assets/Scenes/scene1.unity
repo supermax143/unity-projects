@@ -1827,7 +1827,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPlace: {fileID: 1275109099}
   grounds:
-  - {fileID: 100010, guid: a1bc179433f58254ea3b448c5888d0e4, type: 2}
   - {fileID: 100028, guid: 90f9f9f2dc421da4dbb97c793e69ca0f, type: 2}
 --- !u!61 &761507363
 BoxCollider2D:
