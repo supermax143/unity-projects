@@ -11,4 +11,5 @@ public class TagEnum : MonoBehaviour {
     public static string Destroyer = "Destroyer";
     public static string Ground = "Ground";
     public static string Player = "Player";
+    public static string MainCamera = "MainCamera";
 }

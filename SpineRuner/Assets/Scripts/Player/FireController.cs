@@ -112,7 +112,7 @@ public class FireController : MonoBehaviour
 
         float ang = InputManager.Instance.FireAngle * Mathf.Deg2Rad;
 
-        axeIstance.velocity = new Vector2(Mathf.Sin(ang) * xVel, Mathf.Cos(ang) * xVel);
+        axeIstance.velocity = new Vector2(Mathf.Cos(ang) * xVel, Mathf.Sin(ang) * xVel);
         
 
         axeIstance.AddTorque(-250);

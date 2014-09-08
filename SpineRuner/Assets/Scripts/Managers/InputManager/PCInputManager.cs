@@ -6,9 +6,11 @@ public class PCInputManager : InputManager
 
 	// Use this for initialization
 	void Start () {
-	
+        init();
 	}
 	
+    
+
 	// Update is called once per frame
 	void Update () {
         isJumpPressed = Input.GetButton("Jump");
@@ -22,6 +24,13 @@ public class PCInputManager : InputManager
             isFirePressed = false;
 
         if (Input.mousePosition!=null)
-            fireAngle = MAX_ANGLE-(MAX_ANGLE - MIN_ANGLE) * (Input.mousePosition.y / Screen.height);
+        {
+            Vector2 p1 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 p2 = FirePosition;
+            fireAngle = Mathf.Atan2(p2.y - p1.y, p2.x - p1.x) *(180 / Mathf.PI) + 180;
+            //Debug.DrawLine(FirePosition, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            //Debug.Log(fireAngle);
+          
+        }
 	}
 }
