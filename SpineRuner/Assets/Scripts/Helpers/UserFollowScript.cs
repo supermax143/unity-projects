@@ -18,7 +18,7 @@ public class UserFollowScript : MonoBehaviour {
 
 
 	void Start () {
-		playerPosition = GameObject.Find("ork").transform;
+		playerPosition = GameObject.Find("player").transform;
 		playerStartPosition = new Vector3(playerPosition.position.x,playerPosition.position.y);
 		startX = transform.position.x;
 		startY = transform.position.y;

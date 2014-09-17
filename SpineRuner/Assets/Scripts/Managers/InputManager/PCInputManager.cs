@@ -23,14 +23,16 @@ public class PCInputManager : InputManager
 		else if(Input.GetMouseButtonUp(0))
             isFirePressed = false;
 
-        if (Input.mousePosition!=null)
-        {
-            Vector2 p1 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 p2 = FirePosition;
-            fireAngle = Mathf.Atan2(p2.y - p1.y, p2.x - p1.x) *(180 / Mathf.PI) + 180;
-            //Debug.DrawLine(FirePosition, Camera.main.ScreenToWorldPoint(Input.mousePosition));
-            //Debug.Log(fireAngle);
-          
-        }
+        HandleMouseInput();
 	}
+
+    private void HandleMouseInput()
+    {
+        Vector2 p1 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 p2 = FirePosition;
+        fireAngle = Mathf.Atan2(p2.y - p1.y, p2.x - p1.x) *(180 / Mathf.PI) + 180;
+    }
+
+
+
 }

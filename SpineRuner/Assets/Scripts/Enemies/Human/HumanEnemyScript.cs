@@ -60,6 +60,7 @@ public class HumanEnemyScript : MonoBehaviour {
 
     private void HandleCollision(string sender, GameObject gameObject)
     {
+        
         if (state == State.Death)
             return;
         if (gameObject.tag == TagEnum.Weapon && sender!="weapon")

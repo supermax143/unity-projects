@@ -49,20 +49,19 @@ public class InputManager : MonoBehaviour {
 	void Start () {
 	    switch(Application.platform)
         {
-            case RuntimePlatform.WindowsEditor:
-            case RuntimePlatform.WindowsPlayer:
-            case RuntimePlatform.WindowsWebPlayer:
-                instance = gameObject.AddComponent<PCInputManager>();//GetComponentInChildren<PCInputManager>();
+            case RuntimePlatform.Android:
+            case RuntimePlatform.IPhonePlayer:
+                instance = gameObject.AddComponent<MobileInputManager>();//GetComponentInChildren<MobileInputManager>();
                 break;
             default :
-                instance = gameObject.AddComponent<MobileInputManager>();//GetComponentInChildren<MobileInputManager>();
+                instance = gameObject.AddComponent<PCInputManager>();//GetComponentInChildren<PCInputManager>();
                 break;
         }
 	}
 	
     protected void init()
     {
-        player = GameObject.Find("ork");
+        player = GameObject.Find("player");
         fireBone = player.GetComponent<SkeletonAnimation>().skeleton.FindBone("axe");
     }
 

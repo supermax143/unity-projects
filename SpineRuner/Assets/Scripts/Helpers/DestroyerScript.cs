@@ -6,33 +6,34 @@ public class DestroyerScript : MonoBehaviour {
 	
 	void OnTriggerEnter2D(Collider2D collider)
 	{
-        switch (collider.gameObject.tag)
+        if (collider.gameObject.tag == TagEnum.Player)
         {
-            case "Player":
-                break;
-            case "Enemy":
-                Destroy(collider.transform.parent.gameObject);
-                break;
-            default:
-                HandleDefaulDestroy(collider);
-                break;
         }
+        else if (collider.gameObject.tag == TagEnum.Enemy)
+            Destroy(collider.transform.parent.gameObject);
+        else if (collider.gameObject.tag == TagEnum.RightBound)
+            DestroyGround(collider);
+        else
+            HandleDefaulDestroy(collider);
 	}
+
+    private void DestroyGround(Collider2D collider)
+    {
+        Destroy(collider.transform.parent.gameObject);
+    }
+
+
 
     private void HandleDefaulDestroy(Collider2D collider)
     {
+        if (collider.gameObject.tag == TagEnum.Ground)
+            return;
+
         if (!collider.transform.parent) { 
             Destroy(collider.gameObject);
             return;
         }
-        if (collider.transform.parent.transform.childCount==1)
-        {
-            Destroy(collider.transform.parent.gameObject);
-        }
-        else
-        {
-            Destroy(collider.gameObject);
-        }
+        Destroy(collider.transform.parent.gameObject);
     }
 
     

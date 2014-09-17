@@ -9,7 +9,7 @@ public class CameraController : MonoBehaviour {
     private Camera cameraComponent;
     void Start()
     {
-        playerTransform = GameObject.Find("ork").transform;
+        playerTransform = GameObject.Find("player").transform;
         cameraComponent = GetComponent<Camera>();
     }
 
