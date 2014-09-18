@@ -6,16 +6,19 @@ public class PlayerController : MonoBehaviour {
 
 	private float speed;
 	private Transform groundCheck;
-	public float maxSpeed = 10f;
-	public float jumpForce = 700;
-    SkeletonAnimation skeletonAnimation;
-    ColiderScript[] colliders;
-
-    enum State  { Run, Jump, Hurt};
-    private State state = State.Run;
+    private SkeletonAnimation skeletonAnimation;
+    private ColiderScript[] colliders;
+    private float timeToWait = 0f;
     private bool grounded;
 
-    float timeToWait = 0f;
+    public delegate void StateChangedDelegate(State state);
+    public event StateChangedDelegate StateChanged;
+
+	public float maxSpeed = 10f;
+	public float jumpForce = 700;
+
+    public enum State  { Run, Jump, Hurt};
+    State state = State.Run;
 
 
     void Start () {
@@ -24,7 +27,7 @@ public class PlayerController : MonoBehaviour {
         colliders = GetComponentsInChildren<ColiderScript>();
         foreach (ColiderScript c in colliders)
         {
-            c.triggerEnterEvent += OnCollisionEnterEvent;
+            c.TriggerEnter += OnCollisionEnterEvent;
         }
 	}
 
@@ -116,6 +119,7 @@ public class PlayerController : MonoBehaviour {
                 break;
         }
         state = value;
+        StateChanged(state);
     }
 
 

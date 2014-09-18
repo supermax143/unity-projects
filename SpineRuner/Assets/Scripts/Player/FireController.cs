@@ -4,10 +4,12 @@ using System.Collections;
 public class FireController : MonoBehaviour
 {
 
-	private const int IDLE = 1;
-	private const int START_THROW = 2;
-	private const int BOOST_THROW = 3;
-	private const int THROW = 4;
+	//private const int IDLE = 1;
+	//private const int START_THROW = 2;
+	//private const int BOOST_THROW = 3;
+	//private const int THROW = 4;
+
+    private enum FireState { IDLE, START_THROW, BOOST_THROW, THROW };
 
 	//boost
 	public float throwBoostTime = 1.5f;
@@ -21,7 +23,7 @@ public class FireController : MonoBehaviour
 	
 	private Spine.Bone weaponPlace;
 
-	private int state = IDLE;
+	private FireState fireState = FireState.IDLE;
     SkeletonAnimation skeletonAnimation;
 		
 	void Start ()
@@ -37,15 +39,15 @@ public class FireController : MonoBehaviour
 	void Update ()
 	{
         
-		switch(state)
+		switch(fireState)
 		{
-			case IDLE:
+			case FireState.IDLE:
 				OnStateIdle();
 				break;
-			case START_THROW:
+            case FireState.START_THROW:
 				OnStateStartThrow();
 				break;
-			case BOOST_THROW:
+            case FireState.BOOST_THROW:
 				OnStateBoostThrow();
 				break;
 		}
@@ -53,8 +55,15 @@ public class FireController : MonoBehaviour
 
 	void OnStateStartThrow()
 	{
-
+        GetComponent<PlayerController>().StateChanged += OnMainStateStateChanged;
 	}
+
+    void OnMainStateStateChanged(PlayerController.State state)
+    {
+        if (state == PlayerController.State.Hurt)
+            fireState = FireState.IDLE;
+    }
+
 
 	
 	void OnStateIdle()
@@ -65,7 +74,7 @@ public class FireController : MonoBehaviour
 
 	private void StartThrow()
 	{
-		state = START_THROW;
+        fireState = FireState.START_THROW;
         skeletonAnimation.state.SetAnimation(2, "throw_start",false);
         skeletonAnimation.state.End += SartThrowCompleteHandler;
 	}
@@ -76,7 +85,7 @@ public class FireController : MonoBehaviour
             return;
         skeletonAnimation.state.End -= SartThrowCompleteHandler;
         skeletonAnimation.state.SetAnimation(3, "throw_boost", true);
-		this.state = BOOST_THROW;
+        this.fireState = FireState.BOOST_THROW;
 		boostStarTime = TimerManager.Instance.CurrentTime;
     }
 	void OnStateBoostThrow()
@@ -91,7 +100,7 @@ public class FireController : MonoBehaviour
         skeletonAnimation.state.SetAnimation(4, "throw", false);
         skeletonAnimation.state.End += ThrowAnimationCompleteHandler;
         skeletonAnimation.state.Event += OnWeaponThrown;
-        state = THROW;
+        fireState = FireState.THROW;
     }
 
     void OnWeaponThrown(Spine.AnimationState state, int trackIndex, Spine.Event e)
@@ -123,7 +132,7 @@ public class FireController : MonoBehaviour
         if (trackIndex != 4)
             return;
         skeletonAnimation.state.End -= ThrowAnimationCompleteHandler;
-		this.state = IDLE;
+        this.fireState = FireState.IDLE;
     }
 
 	

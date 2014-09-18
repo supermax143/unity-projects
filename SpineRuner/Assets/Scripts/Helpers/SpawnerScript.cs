@@ -9,6 +9,8 @@ public class SpawnerScript : MonoBehaviour {
     private Transform rightBoundTransforn;
 
 	public GameObject[] grounds;
+    public GameObject[] enemies;
+    private int numGroundsAddad = 0;
 
 	void Start () {
         playerTransform = GameObject.Find("player").transform;
@@ -40,9 +42,27 @@ public class SpawnerScript : MonoBehaviour {
         Vector2.Distance(playerTransform.position, rightBoundTransforn.position);
         if(Vector2.Distance(playerTransform.position, rightBoundTransforn.position)<spawnDistance)
         {
-            GameObject ground = grounds[Random.Range(0, grounds.GetLength(0))];
-            Instantiate(ground, rightBoundTransforn.position, new Quaternion());
+            GameObject ground = AddGround();
+            if(numGroundsAddad % 2 == 0)
+                AddEnemy(ground);
             UpdateRightBound();
         }
     }
+
+    private void AddEnemy(GameObject ground)
+    {
+        GameObject enemyPref = enemies[Random.Range(0, enemies.GetLength(0))];
+        GameObject enemy = (GameObject)Instantiate(enemyPref, ground.transform.position, new Quaternion());
+         
+    }
+
+    private GameObject AddGround()
+    {
+        numGroundsAddad++;
+        GameObject groundPref = grounds[Random.Range(0, grounds.GetLength(0))];
+        return (GameObject)Instantiate(groundPref, rightBoundTransforn.position, new Quaternion());
+    }
+
+
+
 }

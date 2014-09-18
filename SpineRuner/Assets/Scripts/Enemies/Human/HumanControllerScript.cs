@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Spine;
-public class HumanEnemyScript : MonoBehaviour {
-
-
+public class HumanControllerScript : MonoBehaviour
+{
     SkeletonAnimation skeletonAnimation;
     ColiderScript[] colliders;
     Spine.Bone weaponPlace;
@@ -17,8 +16,8 @@ public class HumanEnemyScript : MonoBehaviour {
         colliders = GetComponentsInChildren<ColiderScript>();
         foreach (ColiderScript c in colliders)
         {
-            c.triggerEnterEvent += OnCollisionEvent;
-            c.collisionEnterEvent += OnCollisionEvent;        
+            c.TriggerEnter += OnCollisionEvent;
+            c.CollisionEnter += OnCollisionEvent;        
         }
         weaponPlace = skeletonAnimation.skeleton.FindBone("weapon");
         playerTransfor = GameObject.FindGameObjectWithTag("Player").transform;
@@ -45,7 +44,15 @@ public class HumanEnemyScript : MonoBehaviour {
         {
             state = State.Atack;
             skeletonAnimation.state.SetAnimation(2, "atack", false);
+            skeletonAnimation.state.End += AtackCompleteHandler;
         }
+    }
+
+    private void AtackCompleteHandler(Spine.AnimationState animationState, int trackIndex)
+    {
+        if(this.state == State.Death)
+            return;
+        state = State.Idle;
     }
 
     private void OnCollisionEvent(string sender, Collider2D collider)
