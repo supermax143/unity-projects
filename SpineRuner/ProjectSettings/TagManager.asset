@@ -25,7 +25,7 @@ TagManager:
   User Layer 10: Weapon
   User Layer 11: Void
   User Layer 12: Destoyer
-  User Layer 13: 
+  User Layer 13: Enemy
   User Layer 14: 
   User Layer 15: 
   User Layer 16: 
@@ -45,27 +45,27 @@ TagManager:
   User Layer 30: 
   User Layer 31: 
   m_SortingLayers:
-  - name: Weapon
-    userID: 4
-    uniqueID: 1787787455
-    locked: 0
   - name: Default
     userID: 0
     uniqueID: 0
     locked: 0
-  - name: Void
-    userID: 3
-    uniqueID: 4008298131
-    locked: 0
-  - name: Ground
+  - name: Backward
     userID: 2
     uniqueID: 1195313537
     locked: 0
-  - name: Player
+  - name: Middle
+    userID: 3
+    uniqueID: 4008298131
+    locked: 0
+  - name: Forward
+    userID: 4
+    uniqueID: 1787787455
+    locked: 0
+  - name: Effects
     userID: 1
     uniqueID: 1318656075
     locked: 0
-  - name: Destoyer
+  - name: 
     userID: 5
     uniqueID: 1278112085
     locked: 0

@@ -39,14 +39,14 @@ public class BonesBrakerScript : MonoBehaviour {
         boneGameObject.AddComponent<Rigidbody2D>();
         boneGameObject.rigidbody2D.gravityScale = 8;
 
-
         boneGameObject.AddComponent<BoxCollider2D>();
         boneGameObject.layer = LayerMask.NameToLayer(LayerEnum.Void);
-        
+        boneGameObject.renderer.sortingLayerName = renderer.sortingLayerName;
+
         Vector3 axePosition = new Vector3(skeletonAnimation.transform.position.x + slot.bone.worldX, skeletonAnimation.transform.position.y + slot.bone.worldY);
         boneGameObject.transform.position = axePosition;
-        boneGameObject.rigidbody2D.AddTorque(-200);
-        boneGameObject.rigidbody2D.AddForce(new Vector2(Random.Range(-100, 100), 1000));
+        boneGameObject.rigidbody2D.AddTorque(Random.Range(-200, 200));
+        boneGameObject.rigidbody2D.AddForce(new Vector2(Random.Range(-200, 200), 1000));
     }
 
 

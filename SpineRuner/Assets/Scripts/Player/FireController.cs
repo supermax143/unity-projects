@@ -124,7 +124,7 @@ public class FireController : MonoBehaviour
         axeIstance.velocity = new Vector2(Mathf.Cos(ang) * xVel, Mathf.Sin(ang) * xVel);
         
 
-        axeIstance.AddTorque(-250);
+        axeIstance.AddTorque(-400);
     }
 
     void ThrowAnimationCompleteHandler(Spine.AnimationState state, int trackIndex)

@@ -9,4 +9,6 @@ public class LayerEnum : MonoBehaviour {
     public static readonly string Weapon = "Weapon";
     public static readonly string Destoyer = "Destoyer";
     public static readonly string Void = "Void";
+    public static readonly string Enemy = "Enemy";
+    
 }

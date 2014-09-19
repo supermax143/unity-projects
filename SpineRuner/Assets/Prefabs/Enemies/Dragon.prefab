@@ -15,7 +15,8 @@ GameObject:
   - 114: {fileID: 11400004}
   - 50: {fileID: 5000000}
   - 114: {fileID: 11400012}
-  m_Layer: 0
+  - 114: {fileID: 11400014}
+  m_Layer: 13
   m_Name: Dragon
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -34,7 +35,7 @@ GameObject:
   - 61: {fileID: 6100000}
   - 114: {fileID: 11400008}
   - 114: {fileID: 11400006}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: body_collider
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -84,7 +85,7 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1787787455
   m_SortingOrder: 0
 --- !u!33 &3300000
 MeshFilter:
@@ -218,6 +219,17 @@ MonoBehaviour:
   bones:
   - R_wing
   - L_wing
+--- !u!114 &11400014
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 188c61358730b4e259a3aed7fefaa890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
