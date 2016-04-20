@@ -3,7 +3,7 @@ using System.Collections;
 
 public class DragonControllerScript : MonoBehaviour {
 
-    public float smoothness = 5;
+    public float smoothness = 1;
     enum State { MovigToTargetPoint,  Death };
     private State state = State.MovigToTargetPoint;
     private SkeletonAnimation skeletonAnimation;

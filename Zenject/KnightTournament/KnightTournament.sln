@@ -1,0 +1,29 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{6779358E-05C0-9BB6-353D-F1997DD787E5}") = "KnightTournament", "Assembly-CSharp.csproj", "{869122CC-56DA-3E03-4BDA-03E5B4630DBD}"
+EndProject
+Project("{6779358E-05C0-9BB6-353D-F1997DD787E5}") = "KnightTournament", "Assembly-CSharp-Editor.csproj", "{C78EE5D3-7FCD-C7C1-D124-FFD89F03B3CE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{869122CC-56DA-3E03-4BDA-03E5B4630DBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{869122CC-56DA-3E03-4BDA-03E5B4630DBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{869122CC-56DA-3E03-4BDA-03E5B4630DBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{869122CC-56DA-3E03-4BDA-03E5B4630DBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C78EE5D3-7FCD-C7C1-D124-FFD89F03B3CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C78EE5D3-7FCD-C7C1-D124-FFD89F03B3CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C78EE5D3-7FCD-C7C1-D124-FFD89F03B3CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C78EE5D3-7FCD-C7C1-D124-FFD89F03B3CE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal

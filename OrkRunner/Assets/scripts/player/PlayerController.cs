@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour {
 		//float move = Input.GetAxis("Horizontal");
 		animator.SetBool("grounded", grounded);
 		//rigidbody2D.velocity = new Vector2(move * maxSpeed, rigidbody2D.velocity.y);
-		rigidbody2D.velocity = new Vector2(maxSpeed, rigidbody2D.velocity.y);
+		GetComponent<Rigidbody2D>().velocity = new Vector2(maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
 		animator.SetFloat("speed", Mathf.Abs(maxSpeed));
 		if(grounded && Input.GetButton("Jump"))
 			ApplyJump();
@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour {
 	private void ApplyJump(){
 
 		animator.SetTrigger("jump");
-		rigidbody2D.AddForce(new Vector2(0,jumpForce));
+		GetComponent<Rigidbody2D>().AddForce(new Vector2(0,jumpForce));
 	}
 
 }

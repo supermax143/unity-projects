@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f61bd2cbeb22b26498d6c9c348ddd1d4, type: 3}
+  m_Name: Items
+  m_EditorClassIdentifier: 
+  helmets:
+  - id: 635626373812832687
+    type: 0
+    name: "\u0421\u0438\u043D\u0438\u0439 \u0428\u043B\u0435\u043C"
+    image: {fileID: 0}
+    parts:
+    - partType: 0
+      image: {fileID: 21300008, guid: 467bf881e872e754092f894f2ca26051, type: 3}
+  - id: 635626373978342153
+    type: 0
+    name: "\u041A\u0440\u0430\u0441\u043D\u044B\u0439 \u0428\u043B\u0435\u043C"
+    image: {fileID: 0}
+    parts:
+    - partType: 0
+      image: {fileID: 21300008, guid: 16cb76192520cb743a50b4715513f3e0, type: 3}
+  suits:
+  - id: 635626374899934866
+    type: 1
+    name: "\u0421\u0438\u043D\u0438\u0439 \u041A\u043E\u0441\u0442\u044E\u043C"
+    image: {fileID: 0}
+    parts:
+    - partType: 1
+      image: {fileID: 21300002, guid: 467bf881e872e754092f894f2ca26051, type: 3}
+    - partType: 6
+      image: {fileID: 21300014, guid: 467bf881e872e754092f894f2ca26051, type: 3}
+    - partType: 7
+      image: {fileID: 21300012, guid: 467bf881e872e754092f894f2ca26051, type: 3}
+    - partType: 2
+      image: {fileID: 21300016, guid: 467bf881e872e754092f894f2ca26051, type: 3}
+    - partType: 3
+      image: {fileID: 21300010, guid: 467bf881e872e754092f894f2ca26051, type: 3}
+    - partType: 4
+      image: {fileID: 21300016, guid: 467bf881e872e754092f894f2ca26051, type: 3}
+    - partType: 5
+      image: {fileID: 21300010, guid: 467bf881e872e754092f894f2ca26051, type: 3}
+  - id: 635626375718431681
+    type: 1
+    name: "\u041A\u0440\u0430\u0441\u043D\u044B\u0439 \u041A\u043E\u0441\u0442\u044E\u043C"
+    image: {fileID: 0}
+    parts:
+    - partType: 1
+      image: {fileID: 21300002, guid: 16cb76192520cb743a50b4715513f3e0, type: 3}
+    - partType: 6
+      image: {fileID: 21300014, guid: 16cb76192520cb743a50b4715513f3e0, type: 3}
+    - partType: 7
+      image: {fileID: 21300012, guid: 16cb76192520cb743a50b4715513f3e0, type: 3}
+    - partType: 2
+      image: {fileID: 21300018, guid: 16cb76192520cb743a50b4715513f3e0, type: 3}
+    - partType: 3
+      image: {fileID: 21300010, guid: 16cb76192520cb743a50b4715513f3e0, type: 3}
+    - partType: 4
+      image: {fileID: 21300018, guid: 16cb76192520cb743a50b4715513f3e0, type: 3}
+    - partType: 5
+      image: {fileID: 21300010, guid: 16cb76192520cb743a50b4715513f3e0, type: 3}
+  spears: []
